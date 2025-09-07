@@ -1,0 +1,63 @@
+{
+  "name": "Coconut",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-typescript-next",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "dbaeumer.vscode-eslint",
+        "ms-vscode.vscode-json"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "typescript.preferences.importModuleSpecifier": "relative",
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": true
+        }
+      }
+    }
+  },
+  "forwardPorts": [3020, 3021],
+  "portsAttributes": {
+    "3020": {
+      "label": "Coconut Dashboard",
+      "onAutoForward": "notify"
+    },
+    "3021": {
+      "label": "Dev Server",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "git config --global --add safe.directory /workspaces/project && git config --global user.name 'Coconut AI' && git config --global user.email 'noreply@coconut.dev' && echo 'Coconuts is already installed globally'",
+  "postStartCommand": "",
+  "workspaceFolder": "/workspaces/project",
+  "containerEnv": {
+    "GIT_CONFIG_GLOBAL": "/home/node/.gitconfig"
+  },
+  "remoteUser": "node",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspaces/project,type=bind,consistency=cached"
+  ],
+  "runArgs": [
+    "--init",
+    "--cap-add=SYS_PTRACE",
+    "--security-opt",
+    "seccomp=unconfined",
+    "-p",
+    "3020:3020",
+    "-p",
+    "3021:3021"
+  ],
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "initializeCommand": "echo 'Initializing devcontainer...'",
+  "updateContentCommand": "git config --global --add safe.directory /workspaces/project"
+}
