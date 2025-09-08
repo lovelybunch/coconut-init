@@ -36,7 +36,7 @@ USER node
 
 # Set up environment variables
 ENV NODE_ENV=development \
-    SHELL=/bin/bash \
+    SHELL=/bin/bash
 
 # Set working directory
 WORKDIR /workspaces/project
