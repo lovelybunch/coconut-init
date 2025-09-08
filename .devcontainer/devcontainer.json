@@ -24,13 +24,13 @@
       }
     }
   },
-  "forwardPorts": [3020, 3021],
+  "forwardPorts": [3000, 3001],
   "portsAttributes": {
-    "3020": {
+    "3000": {
       "label": "Coconut Dashboard",
       "onAutoForward": "notify"
     },
-    "3021": {
+    "3001": {
       "label": "Dev Server",
       "onAutoForward": "notify"
     }
@@ -51,9 +51,9 @@
     "--security-opt",
     "seccomp=unconfined",
     "-p",
-    "3020:3020",
+    "3000:3000",
     "-p",
-    "3021:3021"
+    "3001:3001"
   ],
   "features": {
     "ghcr.io/devcontainers/features/git:1": {}
